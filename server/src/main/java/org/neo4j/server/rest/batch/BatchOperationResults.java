@@ -41,6 +41,7 @@ public class BatchOperationResults
     private static final String OPENING_CURLY = "{";
     private static final String CLOSING_CURLY = "}";
     private static final String COMMA = ",";
+    private static final String INDEXED = "\"indexed\" : \"";
 
     private StringWriter results = new StringWriter();
     private boolean firstResult = true;
@@ -76,6 +77,14 @@ public class BatchOperationResults
 
         if ( body != null && body.length() != 0 )
         {
+            if ( location == null )
+            {
+                int k = body.indexOf( INDEXED );
+                if ( k != -1 )
+                {
+                    locations.put( id, body.substring( k + INDEXED.length(), body.indexOf( '"', k + INDEXED.length() ) ) );
+                }
+            }
             results.append( "\"body\":" )
                     .append( body )
                     .append( COMMA );
