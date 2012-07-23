@@ -1,3 +1,8 @@
+1.8
+--------------------
+o Added escape characters to string literals
+o Renamed `RELATE` to `CREATE UNIQUE`
+
 1.8.M06 (2012-07-06)
 --------------------
 o Fixes problem when graph elements are deleted multiple times in the same query
